@@ -11,7 +11,7 @@ jobs:
     steps:
       - checkout
       - run:
-          command: CGO_ENABLED=0 cd /project/go/src/app && go test ./...
+          command: CGO_ENABLED=0 cd /root/project/src && go test ./...
           name: Run tests
 
 workflows:
