@@ -1,4 +1,4 @@
-locals {
+  locals {
   nodegroup_arn = module.eks.eks_managed_node_groups[local.node_group_name].iam_role_arn
   map_users = <<-USERS
 %{for user in data.aws_iam_group.admins.users}- groups:

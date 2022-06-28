@@ -22,7 +22,6 @@ workflows:
           requires:
             - unit_tests
 #          context: dev_eu-west-1
-#          create-repo: true
           region: eu-west-1
           registry-id: AWS_ACCOUNT_ID
           repo: pgf
