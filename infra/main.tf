@@ -1,15 +1,16 @@
 terraform {
 
   required_version = "~> 1.2"
+
   backend "s3" {
-    bucket = "pgf-ci-cd-state"
+    bucket = "pgf-state-store"
     key    = "pgf"
     region = "eu-west-1"
   }
   required_providers {
     aws = {
       source  = "hashicorp/aws"
-      version = "~> 3.0"
+      version = "~> 4.0"
     }
   }
 }

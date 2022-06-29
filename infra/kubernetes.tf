@@ -1,4 +1,4 @@
-locals {
+  locals {
   nodegroup_arn = module.eks.eks_managed_node_groups[local.node_group_name].iam_role_arn
   map_users = <<-USERS
 %{for user in data.aws_iam_group.admins.users}- groups:
@@ -39,6 +39,8 @@ resource "null_resource" "argo_cd" {
   provisioner "local-exec" {
     command     = "kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml"
   }
+
+  depends_on = [module.eks.aws_eks_cluster]
 }
 
 resource "kubernetes_config_map" "aws-auth" {

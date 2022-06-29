@@ -2,27 +2,17 @@
 # See: https://circleci.com/docs/2.0/configuration-reference
 version: 2.1
 orbs:
-  node: circleci/node@5.0.2
   aws-ecr: circleci/aws-ecr@8.1.2
 
 jobs:
   unit_tests:
-    executor: node/default
+    docker:
+      - image: golang:alpine3.16
     steps:
       - checkout
-      - node/install-packages:
-          pkg-manager: yarn
       - run:
-          command: yarn lint
-          name: Lint files
-      - run:
-          command: yarn format
-          name: Format files
-      - run:
-          command: yarn test:unit
+          command: export CGO_ENABLED=0 && cd /root/project/src && go test ./...
           name: Run tests
-      - store_test_results:
-          path: ./jest-reports/report.xml
 
 workflows:
   commit_stage:
@@ -32,7 +22,6 @@ workflows:
           requires:
             - unit_tests
 #          context: dev_eu-west-1
-#          create-repo: true
           region: eu-west-1
           registry-id: AWS_ACCOUNT_ID
           repo: pgf

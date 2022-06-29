@@ -1,15 +1,13 @@
 data "aws_iam_group" "admins" {
-  group_name = "Administrators"
+  group_name = "admins"
 }
 
 data "aws_eks_cluster_auth" "cluster" {
-  name = local.cluster_name
-
-  depends_on = [module.eks.aws_eks_cluster]
+  name = module.eks.cluster_id
 }
 
 data "aws_eks_cluster" "cluster" {
-  name = local.cluster_name
+  name = module.eks.cluster_id
 
   depends_on = [module.eks.aws_eks_cluster]
 }
