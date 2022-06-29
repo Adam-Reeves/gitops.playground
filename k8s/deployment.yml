@@ -16,6 +16,6 @@ spec:
     spec:
       containers:
         - name: pgf-app
-          image: 742196880003.dkr.ecr.eu-west-1.amazonaws.com/pgf:latest
+          image: 673278370432.dkr.ecr.eu-west-1.amazonaws.com/pgf:latest
           ports:
             - containerPort: 3000
