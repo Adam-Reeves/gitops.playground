@@ -39,6 +39,8 @@ resource "null_resource" "argo_cd" {
   provisioner "local-exec" {
     command     = "kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml"
   }
+
+  depends_on = [module.eks.aws_eks_cluster]
 }
 
 resource "kubernetes_config_map" "aws-auth" {
