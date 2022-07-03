@@ -19,7 +19,7 @@ jobs:
     steps:
       - checkout
       - run:
-          command: echo $CIRCLE_SHA1
+          command: git clone git@github.com:Adam-Reeves/gitops.playground.config.git
           name: Update app image
 
 workflows:
