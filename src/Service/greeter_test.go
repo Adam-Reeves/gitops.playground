@@ -6,7 +6,7 @@ import (
 
 func TestGreeting(t *testing.T) {
 	str := Greeting()
-	if str != "Hello!" {
+	if str != "Hello, World!" {
 		t.Errorf("Not equal!")
 	}
 }
