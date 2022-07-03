@@ -20,7 +20,7 @@ jobs:
       - checkout
       - add_ssh_keys:
             fingerprints:
-              - "e9:a3:87:4d:c2:a3:98:2f:2f:81:0d:31:75:39:f2:82"
+              - "04:44:53:ac:82:ee:af:a6:b4:72:26:d9:5e:7d:35:f0"
       - run:
           command: |
             sudo snap install kustomize
