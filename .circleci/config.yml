@@ -30,7 +30,7 @@ jobs:
             ssh-add -D
             ssh-add ~/.ssh/id_rsa_044453ac82eeafa6b47226d95e7d35f0
             cd gitops.playground.config/k8s/base
-            kustomize edit set image 673278370432.dkr.ecr.eu-west-1.amazonaws.com/pgf=k673278370432.dkr.ecr.eu-west-1.amazonaws.com/pgf:$CIRCLE_SHA1
+            kustomize edit set image 673278370432.dkr.ecr.eu-west-1.amazonaws.com/pgf=673278370432.dkr.ecr.eu-west-1.amazonaws.com/pgf:$CIRCLE_SHA1
             git commit -am "update app image"
             git push
 
