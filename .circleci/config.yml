@@ -47,7 +47,9 @@ workflows:
           registry-id: AWS_ACCOUNT_ID
           repo: pgf
           tag: CIRCLE_SHA1
-      - update_app_image
+      - update_app_image:
+          requires:
+            - aws-ecr/build-and-push-image
 
 dev_nightly:
   triggers:
