@@ -13,6 +13,14 @@ jobs:
       - run:
           command: export CGO_ENABLED=0 && cd /root/project/src && go test ./...
           name: Run tests
+  update_app_image:
+    machine:
+      image: ubuntu-2004:202010-01
+    steps:
+      - checkout
+      - run:
+          command: echo $CIRCLE_SHA1
+          name: Update app image
 
 workflows:
   commit_stage:
@@ -21,10 +29,11 @@ workflows:
       - aws-ecr/build-and-push-image:
           requires:
             - unit_tests
-#          context: dev_eu-west-1
           region: eu-west-1
           registry-id: AWS_ACCOUNT_ID
           repo: pgf
+          tag: CIRCLE_SHA1
+      - update_app_image
 
 dev_nightly:
   triggers:
