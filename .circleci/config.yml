@@ -23,7 +23,7 @@ jobs:
             sudo snap install kustomize
             git clone git@github.com:Adam-Reeves/gitops.playground.config.git
             cd gitops.playground.config/k8s/base
-            kustomize edit set image 673278370432.dkr.ecr.eu-west-1.amazonaws.com/pgf=kustomize edit set image 673278370432.dkr.ecr.eu-west-1.amazonaws.com/pgf:$CIRCLE_SHA1
+            kustomize edit set image 673278370432.dkr.ecr.eu-west-1.amazonaws.com/pgf=k673278370432.dkr.ecr.eu-west-1.amazonaws.com/pgf:$CIRCLE_SHA1
             git commit -am "update app image"
             git push
 
