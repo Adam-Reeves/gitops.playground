@@ -55,7 +55,7 @@ jobs:
             ssh-add -D
             ssh-add ~/.ssh/id_rsa_044453ac82eeafa6b47226d95e7d35f0
             cd gitops.playground.config/k8s/base
-            cat kustomize.yaml | grep newTag:$MOST_RECENT_CANDIDATE_SHA1
+            cat kustomization.yaml | grep newTag:$MOST_RECENT_CANDIDATE_SHA1
             
             [ $? -ne 0 ] echo "New candidate, time to test. Cool tests passed."
             
