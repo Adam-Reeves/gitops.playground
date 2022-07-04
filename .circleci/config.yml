@@ -51,16 +51,16 @@ workflows:
           requires:
             - aws-ecr/build-and-push-image
 
-dev_nightly:
-  triggers:
-    - schedule:
-      cron: "*/5 * * * *"
-      filters:
-        branches:
-          only:
-            - main
-  jobs:
-    - hello:
-        name: Hello
-        run:
-          command: echo "Hello World"
+  acceptance_tests:
+    triggers:
+      - schedule:
+          cron: "*/5 * * * *"
+          filters:
+            branches:
+              only:
+                - main
+    jobs:
+      - hello:
+          name: Hello
+          run:
+            command: echo "Hello World"
