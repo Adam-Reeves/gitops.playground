@@ -45,7 +45,6 @@ jobs:
             - "04:44:53:ac:82:ee:af:a6:b4:72:26:d9:5e:7d:35:f0"
       - run:
           command: |
-            set -x
             MOST_RECENT_CANDIDATE_SHA1=$(aws ecr describe-images --repository-name pgf --image-ids imageTag=candidate --output json | jq --raw-output '.imageDetails[].imageTags[]' | grep --extended-regexp '\b[0-9a-f]{5,40}\b')
           
             sudo snap install kustomize
@@ -55,13 +54,9 @@ jobs:
             ssh-add -D
             ssh-add ~/.ssh/id_rsa_044453ac82eeafa6b47226d95e7d35f0
             cd gitops.playground.config/k8s/base
-#            cat kustomization.yaml | grep newTag:$MOST_RECENT_CANDIDATE_SHA1
             
             MANIFEST=$(aws ecr batch-get-image --repository-name pgf --image-ids imageTag=candidate --output json | jq --raw-output --join-output '.images[0].imageManifest')
             aws ecr put-image --repository-name pgf --image-tag production --image-manifest "$MANIFEST"
-#            kustomize edit set image 673278370432.dkr.ecr.eu-west-1.amazonaws.com/pgf=673278370432.dkr.ecr.eu-west-1.amazonaws.com/pgf:EXISTING_TAG
-#            git commit -am "update app image"
-#            git push
 workflows:
   commit_stage:
     jobs:
