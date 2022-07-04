@@ -35,7 +35,14 @@ jobs:
             git push
 
           name: Update app image
-
+  acceptance_tests:
+    machine:
+      image: ubuntu-2004:202010-01
+    steps:
+      - checkout
+      - run:
+          command: |
+            echo "Hello, World!"
 workflows:
   commit_stage:
     jobs:
@@ -60,7 +67,4 @@ workflows:
               only:
                 - main
     jobs:
-      - hello:
-          name: Hello
-          run:
-            command: echo "Hello World"
+      - acceptance_tests
