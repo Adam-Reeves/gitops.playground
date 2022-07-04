@@ -45,6 +45,7 @@ jobs:
             - "04:44:53:ac:82:ee:af:a6:b4:72:26:d9:5e:7d:35:f0"
       - run:
           command: |
+            set -x
             MOST_RECENT_CANDIDATE_SHA1=$(aws ecr describe-images --repository-name pgf --image-ids imageTag=candidate --output json | jq --raw-output '.imageDetails[].imageTags[]' | grep --extended-regexp '\b[0-9a-f]{5,40}\b')
           
             sudo snap install kustomize
