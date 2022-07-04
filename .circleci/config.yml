@@ -71,7 +71,7 @@ workflows:
           region: eu-west-1
           registry-id: AWS_ACCOUNT_ID
           repo: pgf
-          tag: $CIRCLE_SHA1, candidate
+          tag: $CIRCLE_SHA1,candidate
       - update_app_image:
           requires:
             - aws-ecr/build-and-push-image
