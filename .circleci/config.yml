@@ -55,7 +55,7 @@ jobs:
             ssh-add ~/.ssh/id_rsa_044453ac82eeafa6b47226d95e7d35f0
             cd gitops.playground.config/k8s/base
             
-            if [ $(cat kustomization.yaml | grep newTag:$MOST_RECENT_CANDIDATE_SHA1) -eq 0 ]; then
+            if [[ $(cat kustomization.yaml | grep newTag:$MOST_RECENT_CANDIDATE_SHA1) -eq 0 ]]; then
               echo "No changes, not doing tests"
             else
               echo "Doing tests, I swear!"
